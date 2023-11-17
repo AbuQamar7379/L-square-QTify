@@ -3,14 +3,19 @@ import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
 import Section from "./components/Section/Section";
 import { useState, useEffect } from "react";
-import { fetchTopAlbum } from "./api/api";
+import { fetchTopAlbum , fetchNewAlbum} from "./api/api";
 
 const App = () => {
-  let [data, setData] = useState([]);
+  let [topAlbum, setTopAlbum] = useState([]);
+  let [newAlbum, setNewAlbum] = useState([]);
   useEffect(() => {
     (async () => {
-      let resData = await fetchTopAlbum();
-      setData(resData);
+      let topAlbumData = await fetchTopAlbum();
+      setTopAlbum(topAlbumData);
+
+      let newAlbumData = await fetchNewAlbum();
+      setNewAlbum(newAlbumData)
+      
     })();
   }, []);
   return (
@@ -18,7 +23,8 @@ const App = () => {
       <Navbar />
       <Hero />
       <div className="sectionWrapper">
-        <Section title="Top Albums" data={data} type="album" />
+        <Section title="Top Albums" data={topAlbum} type="album" />
+        <Section title="New Albums" data={newAlbum} type='album' />
       </div>{" "}
     </>
   );

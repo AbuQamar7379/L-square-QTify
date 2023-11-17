@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 20px;
+    padding: 30px 20px 0 20px;
 }
 
 .header p {

@@ -17,4 +17,13 @@ const fetchTopAlbum = async() => {
     }
 };
 
-export { fetchTopAlbum };
+const fetchNewAlbum = async() => {
+    try {
+        let res = await axios.get(config["endpoint"]["NewAlbum"]);
+        return res.data;
+    } catch (err) {
+        return new Error("Failed to Fetch !", err);
+    }
+};
+
+export { fetchTopAlbum, fetchNewAlbum };
