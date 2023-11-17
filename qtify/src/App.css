@@ -16,4 +16,19 @@
 
 body {
     background-color: var(--black-color);
+    color: var(--white-color);
+    overflow-x: hidden;
+}
+
+hr {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.swiper-slide {
+    width: auto !important;
+}
+
+.swiper-wrapper {
+    /* gap: 5px; */
 }

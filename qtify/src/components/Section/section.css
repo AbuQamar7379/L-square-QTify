@@ -1,0 +1,43 @@
+.sectionWrapper {
+    width: 100%;
+    margin-top: 35px;
+}
+
+.showAll {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 20px;
+}
+
+.header p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.cardsWrapper {
+    margin: 20px;
+}
+
+.wrapper {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.toggleText {
+    margin-right: 10px;
+    cursor: pointer;
+    color: var(--color-primary);
+}
+
+@media only screen and (max-width: 576px) {
+    .wrapper {
+        /* gap: 5px; */
+    }
+}

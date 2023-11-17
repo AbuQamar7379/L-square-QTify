@@ -1,26 +1,27 @@
 import "./App.css";
+import Hero from "./components/Hero/Hero";
 import Navbar from "./components/Navbar/Navbar";
-import HeroSection from "./components/Hero Section/HeroSection";
-import TopAlbum from "./components/Card Section/TopAlbum";
+import Section from "./components/Section/Section";
+import { useState, useEffect } from "react";
+import { fetchTopAlbum } from "./api/api";
 
-const config = {
-  endpoint: {
-    topAlbum: "https://qtify-backend-labs.crio.do/albums/top",
-    newAlbum: "https://qtify-backend-labs.crio.do/albums/new",
-    songs: "https://qtify-backend-labs.crio.do/songs",
-    genre: "https://qtify-backend-labs.crio.do/genre",
-  },
-};
-
-function App() {
+const App = () => {
+  let [data, setData] = useState([]);
+  useEffect(() => {
+    (async () => {
+      let resData = await fetchTopAlbum();
+      setData(resData);
+    })();
+  }, []);
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <TopAlbum />
+      <Hero />
+      <div className="sectionWrapper">
+        <Section title="Top Albums" data={data} type="album" />
+      </div>{" "}
     </>
   );
-}
+};
 
 export default App;
-export { config };
