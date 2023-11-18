@@ -1,14 +1,45 @@
+import * as React from "react";
 import { useState } from "react";
 import Card from "../Card/Card";
 import "./section.css";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Tabs, Tab } from "@mui/material";
 import Carousel from "../Carousel/Carousel";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-const Section = ({ title, data, type }) => {
-  let [toggle, setToggle] = useState(false);
+const Section = ({ title, data, type, genres }) => {
+  const theme = createTheme({
+    components: {
+      MuiTabs: {
+        styleOverrides: {
+          indicator: {
+            backgroundColor: "#34c94b",
+          },
+        },
+      },
+    },
+    palette: {
+      primary: {
+        main: "#ffffff",
+      },
+    },
+  });
+
+  const [toggle, setToggle] = useState(false);
+  const [value, setValue] = useState("all");
 
   const handleToggle = () => {
     setToggle(!toggle);
+  };
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const filterSongs = () => {
+    if (type === "songs" && value !== "all") {
+      return data.filter((ele) => ele.genre.key === value);
+    }
+    return data;
   };
 
   return (
@@ -19,6 +50,28 @@ const Section = ({ title, data, type }) => {
           {toggle ? "Collapse" : "Show All"}
         </p>
       </div>
+      {type === "songs" && (
+        <ThemeProvider theme={theme}>
+          <Box sx={{ width: "100%", padding: "10px 20px" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              textColor="primary"
+              aria-label="Genre Filter Tabs"
+            >
+              <Tab value="all" label="All" key="all" className="genreTab" />
+              {genres.map((tab) => (
+                <Tab
+                  key={tab.key}
+                  value={tab.key}
+                  label={tab.label}
+                  className="genreTab"
+                />
+              ))}
+            </Tabs>
+          </Box>
+        </ThemeProvider>
+      )}
       {!data.length ? (
         <Box
           sx={{
@@ -28,26 +81,40 @@ const Section = ({ title, data, type }) => {
             margin: "10px",
           }}
         >
-          <CircularProgress color="success" />{" "}
+          <CircularProgress color="success" />
           <p style={{ marginLeft: "10px" }}>Loading...</p>
         </Box>
       ) : (
-        <div className="cardsWrapper">
-          {toggle ? (
+        <>
+          <div className="cardsWrapper">
             <div className="wrapper">
-              {data.map((card) => {
-                return <Card data={card} type={type} />;
-              })}
+              {toggle ? (
+                // Use the filtered data directly
+                type === "songs" ? (
+                  filterSongs().map((card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  ))
+                ) : (
+                  data.map((card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  ))
+                )
+              ) : (
+                // Pass filtered data to Carousel
+                <Carousel
+                  data={type === "songs" ? filterSongs() : data}
+                  component={(card) => (
+                    <Card key={card.id} data={card} type={type} />
+                  )}
+                />
+              )}
             </div>
-          ) : (
-            <Carousel
-              data={data}
-              component={(data) => <Card data={data} type={type} />}
-            />
-          )}
-        </div>
+          </div>
+          {toggle && title === "Top Albums" && <hr />}
+        </>
       )}
     </div>
   );
 };
+
 export default Section;

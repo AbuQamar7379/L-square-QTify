@@ -36,6 +36,14 @@
     color: var(--color-primary);
 }
 
+.genreTab {
+    color: var(--color-white) !important;
+}
+
+.genreTab.Mui-selected {
+    color: #34c94b !important;
+}
+
 @media only screen and (max-width: 576px) {
     .wrapper {
         /* gap: 5px; */

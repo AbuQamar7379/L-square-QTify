@@ -36,20 +36,6 @@ const Carousel = ({ data, component }) => {
           <SwiperSlide key={item?.id}>{component(item)}</SwiperSlide>
         ))}
       </Swiper>
-      {/* <Swiper
-        initialSlide={0}
-        modules={[Navigation]}
-        slidesPerView="auto"
-        spaceBetween={10}
-        allowTouchMove
-      >
-        {(swiper) => <Controls data={data} swiper={swiper} />}
-        <CarouselLeftNavigation />
-        <CarouselRightNavigation />
-        {data?.map((item) => (
-          <SwiperSlide key={item?.id}>{component(item)}</SwiperSlide>
-        ))}
-      </Swiper> */}
     </div>
   );
 };
