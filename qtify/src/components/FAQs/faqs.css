@@ -1,0 +1,16 @@
+.FaqsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.Faqs {
+  width: 60vw;
+  margin: 20px;
+}
+
+.Faqs h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}

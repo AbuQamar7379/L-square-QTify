@@ -7,8 +7,9 @@ import {
   fetchTopAlbum,
   fetchNewAlbum,
   fetchSongs,
-  fetchGenres
+  fetchGenres,
 } from "./api/api";
+import { FAQs } from "./components/FAQs/FAQs";
 
 const App = () => {
   let [topAlbum, setTopAlbum] = useState([]);
@@ -28,7 +29,6 @@ const App = () => {
 
       let fetchSongsGenere = await fetchGenres();
       setGeneres(fetchSongsGenere.data);
-
     })();
   }, []);
 
@@ -40,9 +40,11 @@ const App = () => {
         <Section title="Top Albums" data={topAlbum} type="album" />
         <Section title="New Albums" data={newAlbum} type="album" />
         <hr />
-        <Section title="Songs" data={songs} type="songs" genres={genres} />
+        <Section title="Songs" data={songs} type="songs" genres={genres} />{" "}
         <hr />
       </div>{" "}
+      <FAQs />
+      <hr style={{ backgroundColor: "gray", border: "1px solid gray" }} />{" "}
     </>
   );
 };
