@@ -1,11 +1,16 @@
 import React from "react";
 import { Tooltip } from "@mui/material";
-import "./card.css";
+import styles from "./card.module.css";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ data, type }) => {
+  let navigate = useNavigate();
   const getCard = () => {
     const commonContent = (
-      <div className="cardImg">
+      <div
+        className={styles.cardImg}
+        onClick={() => type !== "songs" && navigate(`/album/${data.slug}`)}
+      >
         <img src={data.image} alt={type === "album" ? "album" : data.title} />
         <p>
           {((type === "album" ? data.follows : data.likes) / 1000).toFixed(1)}
@@ -25,7 +30,7 @@ const Card = ({ data, type }) => {
         placement="top"
         arrow
       >
-        <div className="card">
+        <div className={styles.card}>
           {commonContent}
           <div>
             <h3>{data.title}</h3>

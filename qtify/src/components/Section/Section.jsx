@@ -1,7 +1,8 @@
 import * as React from "react";
+import styles from "../Section/section.module.css";
+import "./material.css";
 import { useState } from "react";
 import Card from "../Card/Card";
-import "./section.css";
 import { Box, CircularProgress, Tabs, Tab } from "@mui/material";
 import Carousel from "../Carousel/Carousel";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -44,9 +45,9 @@ const Section = ({ title, data, type, genres }) => {
 
   return (
     <div>
-      <div className="header">
+      <div className={styles.header}>
         <p>{title}</p>
-        <p className="showAll" onClick={handleToggle}>
+        <p className={styles.showAll} onClick={handleToggle}>
           {toggle ? "Collapse" : "Show All"}
         </p>
       </div>
@@ -59,13 +60,18 @@ const Section = ({ title, data, type, genres }) => {
               textColor="primary"
               aria-label="Genre Filter Tabs"
             >
-              <Tab value="all" label="All" key="all" className="genreTab" />
+              <Tab
+                value="all"
+                label="All"
+                key="all"
+                className={styles.genreTab}
+              />
               {genres.map((tab) => (
                 <Tab
                   key={tab.key}
                   value={tab.key}
                   label={tab.label}
-                  className="genreTab"
+                  className={styles.genreTab}
                 />
               ))}
             </Tabs>
@@ -86,8 +92,8 @@ const Section = ({ title, data, type, genres }) => {
         </Box>
       ) : (
         <>
-          <div className="cardsWrapper">
-            <div className="wrapper">
+          <div className={styles.cardsWrapper}>
+            <div className={styles.wrapper}>
               {toggle ? (
                 // Use the filtered data directly
                 type === "songs" ? (

@@ -1,7 +1,16 @@
-const Button = ({ text }) => {
+import navbarStyles from "../Navbar/navbar.module.css";
+
+const Button = ({ text, eventHandler }) => {
   return (
     <div>
-      <button className="feedback">{text}</button>
+      <button
+        className={navbarStyles.feedback}
+        onClick={(e) =>
+          eventHandler.event === "onClick" && eventHandler.handler(e)
+        }
+      >
+        {text}
+      </button>
     </div>
   );
 };
