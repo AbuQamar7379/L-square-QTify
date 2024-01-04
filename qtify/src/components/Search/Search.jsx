@@ -3,18 +3,15 @@ import searchIcon from "../../assets/searchIcon.svg";
 import styles from "./search.module.css";
 import navbarStyles from "../Navbar/navbar.module.css";
 
-const Search = ({ data }) => {
+const Search = ({ data, page }) => {
   let [value, setValue] = useState("");
   let [search, setSearch] = useState([]);
-  console.log(value);
-
   const handleInput = (e) => {
     setValue(e.target.value);
 
     let arr = data.filter((album) => {
-      return album.title.toLowerCase().includes(e.target.value.toLowerCase());
+      return album.title.toLowerCase().includes(value.toLowerCase());
     });
-
     setSearch(arr);
   };
 
@@ -26,7 +23,11 @@ const Search = ({ data }) => {
       <div className={navbarStyles.searchField}>
         <input
           type="search"
-          placeholder="Search a album of your choice"
+          placeholder={
+            page === "home"
+              ? "Search an Album of Your Choice"
+              : "Search a Song of Your Choice"
+          }
           value={value}
           onChange={handleInput}
         />
@@ -59,11 +60,21 @@ const Search = ({ data }) => {
                     <div className={styles.albumHeadingWrapper}>
                       <p className={styles.albumTitle}>{album.title}</p>
                       <p className={styles.artists}>
-                        {album.songs[0].artists.join(", ")}.....
+                        {page === "home"
+                          ? album.songs[0].artists.join(", ")
+                          : album.artists.join(", ")}
+                        .....
                       </p>
                     </div>
                     <div className={styles.followersWrapper}>
-                      <p className={styles.followers}>{album.follows}</p>
+                      <p className={styles.followers}>
+                        {page === "home" && album.follows && (
+                          <>{(album.follows / 1000).toFixed(1)}k Follows</>
+                        )}
+                        {page === "song" && album.likes && (
+                          <>{(album.likes / 1000).toFixed(1)}k💖</>
+                        )}
+                      </p>
                     </div>
                   </div>
                 );

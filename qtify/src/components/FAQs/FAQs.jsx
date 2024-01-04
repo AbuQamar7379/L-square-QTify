@@ -20,7 +20,7 @@ const FAQs = () => {
 
         {Object.keys(query).map((question, index) => {
           return (
-            <Accordion className={styles.accordion}>
+            <Accordion key={question} className={styles.accordion}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon className={styles.expandIcon} />}
                 aria-controls={`panel${index}a-content`}

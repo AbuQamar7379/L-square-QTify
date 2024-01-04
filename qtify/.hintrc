@@ -12,5 +12,10 @@
       }
     ],
     "manifest-file-extension": "off"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie 11",
+    "not ios_saf <= 12.5"
+  ]
 }

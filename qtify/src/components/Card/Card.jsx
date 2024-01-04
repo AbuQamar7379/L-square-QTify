@@ -9,7 +9,10 @@ const Card = ({ data, type }) => {
     const commonContent = (
       <div
         className={styles.cardImg}
-        onClick={() => type !== "songs" && navigate(`/album/${data.slug}`)}
+        onClick={() =>
+          type !== "songs" &&
+          navigate(`/album/${data.slug}`, { state: { album: data } })
+        }
       >
         <img src={data.image} alt={type === "album" ? "album" : data.title} />
         <p>

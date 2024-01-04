@@ -1,5 +1,5 @@
 import "./App.css";
-import AlbumPage from "./components/Album Page/AlbumPage";
+import AlbumSongsPage from "./components/Album Songs Page/AlbumSongsPage";
 import HomePage from "./components/Home Page/HomePage";
 import { Route, Routes } from "react-router-dom";
 
@@ -9,7 +9,7 @@ const App = () => {
       <Routes>
         {" "}
         <Route path="/" Component={HomePage} />{" "}
-        <Route path="/album/:title" Component={AlbumPage} />{" "}
+        <Route path="/album/:title" Component={AlbumSongsPage} />{" "}
       </Routes>{" "}
     </>
   );

@@ -1,6 +1,6 @@
 /* Navbar */
 
-nav {
+.nav {
     width: 100vw;
     height: 75px;
     background-color: var(--primary-color);
@@ -8,6 +8,9 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 0px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 5;
 }
 
 
@@ -68,7 +71,7 @@ nav {
 /* Responsive for Mobile or Tab Screens */
 
 @media (max-width: 600px) {
-    nav {
+    .nav {
         padding: 0 15px;
     }
     .img {

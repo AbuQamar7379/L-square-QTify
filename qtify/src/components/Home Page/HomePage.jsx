@@ -37,7 +37,8 @@ function HomePage() {
 
   return (
     <>
-      <Navbar data={topAlbum.concat(newAlbum)} /> <Hero />
+      <Navbar data={topAlbum.concat(newAlbum)} page={"home"} />
+      <Hero />
       <div className={sectionStyles.sectionWrapper}>
         <Section title="Top Albums" data={topAlbum} type="album" />
         <Section title="New Albums" data={newAlbum} type="album" />

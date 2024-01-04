@@ -3,8 +3,9 @@ import Search from "../Search/Search";
 import Button from "../Button/Button";
 import { useEffect, useState } from "react";
 import Feedback from "../Feedback/Feedback";
+import styles from "./navbar.module.css";
 
-const Navbar = ({ data }) => {
+const Navbar = ({ data, page, songsData }) => {
   const [isFeedbackClicked, setIsFeedbackClicked] = useState(false);
 
   const handleClick = () => {
@@ -28,9 +29,9 @@ const Navbar = ({ data }) => {
       {isFeedbackClicked && (
         <Feedback onClose={() => setIsFeedbackClicked(false)} />
       )}
-      <nav>
+      <nav className={styles.nav}>
         <Logo />
-        <Search data={data} />
+        <Search data={page === "home" ? data : songsData} page={page} />
         <Button
           text="GIVE FEEDBACK"
           eventHandler={{ event: "onClick", handler: handleClick }}
